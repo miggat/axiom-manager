@@ -16,4 +16,14 @@
         android:id="@+id/nav_polars"
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="Polars" />
+
+    <item
+        android:id="@+id/nav_node_red"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="Node-Red" />
+
+    <item
+        android:id="@+id/nav_grafana"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="Grafana" />
 </menu>

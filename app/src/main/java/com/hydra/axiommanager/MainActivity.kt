@@ -1,50 +1,41 @@
 package com.hydra.axiommanager
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import androidx.viewpager2.widget.ViewPager2
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var webView: WebView
 
-    private val urls = mapOf(
-        R.id.nav_freeboard to "http://192.168.0.146:3000/@signalk/freeboard-sk/",
-        R.id.nav_kip to "http://192.168.0.146:3000/@mxtommy/kip/#/page/0",
-        R.id.nav_logbook to "http://192.168.0.146:3000/admin/#/e/_meri_imperiumi_signalk_logbook",
-        R.id.nav_polars to "http://192.168.0.146:3000/signalk-polar-recorder/"
+    private val titles = listOf("Freeboard", "KIP", "Logbook", "Polars", "Node-RED", "Grafana")
+    private val urls = listOf(
+        "http://192.168.0.146:3000/@signalk/freeboard-sk/",
+        "http://192.168.0.146:3000/@mxtommy/kip/#/page/0",
+        "http://192.168.0.146:3000/admin/#/e/_meri_imperiumi_signalk_logbook",
+        "http://192.168.0.146:3000/signalk-polar-recorder/",
+        "http://192.168.0.146:3000/plugins/signalk-node-red/redApi/ui/",
+        "http://192.168.0.146:3001/d/befj85vejfke8c/temperature?orgId=1&from=now-24h&to=now&timezone=browser&refresh=auto&kiosk"
     )
 
-    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        webView = findViewById(R.id.webview)
-        val nav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        val viewPager: ViewPager2 = findViewById(R.id.viewPager)
+        val tabLayout: TabLayout = findViewById(R.id.tabLayout)
 
-        val webSettings: WebSettings = webView.settings
-        webSettings.javaScriptEnabled = true
-        webSettings.domStorageEnabled = true
-        webSettings.useWideViewPort = true
-        webSettings.loadWithOverviewMode = true
-        webSettings.allowFileAccess = true
-        webSettings.builtInZoomControls = true
-        webSettings.displayZoomControls = false
-
-        webView.webViewClient = WebViewClient()
-
-        // Default tab
-        webView.loadUrl(urls[R.id.nav_freeboard]!!)
-
-        nav.setOnItemSelectedListener { item ->
-            urls[item.itemId]?.let { url ->
-                webView.loadUrl(url)
-                true
-            } ?: false
+        viewPager.adapter = object : FragmentStateAdapter(this) {
+            override fun getItemCount(): Int = urls.size
+            override fun createFragment(position: Int): Fragment {
+                return WebViewFragment.newInstance(urls[position])
+            }
         }
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = titles[position]
+        }.attach()
     }
 }
