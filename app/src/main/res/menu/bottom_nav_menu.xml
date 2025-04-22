@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_freeboard"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        android:title="Freeboard" />
+    <item
+        android:id="@+id/nav_kip"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="KIP" />
+    <item
+        android:id="@+id/nav_logbook"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Logbook" />
+    <item
+        android:id="@+id/nav_polars"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="Polars" />
+</menu>
