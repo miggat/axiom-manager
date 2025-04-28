@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         val viewPager: ViewPager2 = findViewById(R.id.viewPager)
         val tabLayout: TabLayout = findViewById(R.id.tabLayout)
 
+        viewPager.isUserInputEnabled = false;
+
         viewPager.adapter = object : FragmentStateAdapter(this) {
             override fun getItemCount(): Int = urls.size
             override fun createFragment(position: Int): Fragment {
