@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         "http://192.168.0.146:3000/@signalk/freeboard-sk/",
         "http://192.168.0.146:3000/@mxtommy/kip/#/page/0",
         "http://192.168.0.146:3000/admin/#/e/_meri_imperiumi_signalk_logbook",
-        "http://192.168.0.146:3000/signalk-polar-recorder/",
+        "http://192.168.0.146:3000/polar-recorder/",
         "http://192.168.0.146:3000/plugins/signalk-node-red/redApi/ui/",
         "http://192.168.0.146:3001/d/befj85vejfke8c/temperature?orgId=1&from=now-24h&to=now&timezone=browser&refresh=auto&kiosk"
     )
